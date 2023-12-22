@@ -14,11 +14,11 @@
       enable = true;
       userName = "snylonue";
       userEmail = "snylonue@gmail.com";
-      config = {
+      extraConfig = {
         init = {
           defaultBranch = "master";
         };
-      }
+      };
     };
   };
 
