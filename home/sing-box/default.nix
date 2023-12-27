@@ -54,7 +54,14 @@ in
     ];
 
     systemd.user.services.sing-box = {
-      Install.wantedBy = [ "multi-user.target" ];
+      Install.WantedBy = [ "multi-user.target" ];
+
+      Service = {
+        RestartSec = "10s";
+        Restart = "on-failure";
+        ExecStart = "${pkgs.sing-box}/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run";
+        ExecReload = "/bin/kill -HUP $MAINPID";
+      };
     };
   };
 
