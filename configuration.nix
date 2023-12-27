@@ -22,6 +22,9 @@
     wget
     curl
     helix
+    man-pages
+    man-pages-posix
+    moreutils
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -6,6 +6,9 @@
 
   home.packages = with pkgs; [
     ripgrep
+    bear
+    gnumake
+    gcc
   ];
 
   programs = {
@@ -17,6 +20,9 @@
       extraConfig = {
         init = {
           defaultBranch = "master";
+        };
+        core = {
+          editor = "vim";
         };
       };
     };
