@@ -19,7 +19,7 @@
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable,  home-manager, home-manager-unstable, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, ... }@inputs: {
     nixosConfigurations = {
       "nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -38,29 +38,32 @@
         ];
       };
     };
-  
-  homeConfigurations =
-     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs-unstable.legacyPackages.${system};
-      home-manager = home-manager-unstable; in 
-    {
-      "shinobu" = home-manager.lib.homeManagerConfiguration {
-         inherit pkgs;
 
-         # Specify your home configuration modules here, for example,
-         # the path to your home.nix.
-         modules = [ ./shinobu.nix ];
+    homeConfigurations =
+      let
+        system = "x86_64-linux";
+        pkgs = nixpkgs-unstable.legacyPackages.${system};
+        home-manager = home-manager-unstable;
+      in
+      {
+        "shinobu" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-         # Optionally use extraSpecialArgs
-         # to pass through arguments to home.nix
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [ ./shinobu.nix ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+        };
+
+        "minami" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [ ./minami.nix ];
+        };
       };
 
-      "minami" = home-manager.lib.homeManagerConfiguration {
-         inherit pkgs;
-
-         modules = [ ./minami.nix ];
-      };
-    };
-};
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+  };
 }

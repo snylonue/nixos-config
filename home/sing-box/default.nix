@@ -54,7 +54,7 @@ in
     ];
 
     systemd.user.services.sing-box = {
-     Install.wantedBy = [ "multi-user.target" ];
+      Install.wantedBy = [ "multi-user.target" ];
     };
   };
 
