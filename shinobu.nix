@@ -11,9 +11,11 @@
   home.packages = with pkgs; [
     sing-box
     tuic
+    miniserve
   ];
 
-  services.sing-box.enable = true;
+  # services.sing-box.enable = true;
+  services.tuic.enable = true;
 
   targets.genericLinux.enable = true;
 }

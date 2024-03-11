@@ -6,7 +6,7 @@ in
 {
 
   options = {
-    services.sing-box = {
+    services.tuic = {
       enable = lib.mkEnableOption (lib.mdDoc "Delicately-TUICed 0-RTT proxy protocol");
 
       package = lib.mkPackageOption pkgs "tuic" { };
@@ -27,10 +27,15 @@ in
         lib.platforms.linux)
     ];
 
-    systemd.user.services.sing-box = {
-      Install.WantedBy = [ "multi-user.target" ];
+    systemd.user.services.tuic = {
+      Install.WantedBy = [ "default.target" ];
+
+      Unit = {
+        After = "network.target nss-lookup.target";
+      };
 
       Service = {
+        # User = "root";
         RestartSec = "10s";
         Restart = "on-failure";
         ExecStart = "${pkgs.tuic}/bin/tuic-server -c /usr/local/etc/tuic/config.json";
