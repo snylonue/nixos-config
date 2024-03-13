@@ -25,6 +25,7 @@
     man-pages
     man-pages-posix
     moreutils
+    zip
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

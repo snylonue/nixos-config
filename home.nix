@@ -9,6 +9,10 @@
     bear
     gnumake
     gcc
+    meson
+    ninja
+    gdb
+    tokei
   ];
 
   programs = {
