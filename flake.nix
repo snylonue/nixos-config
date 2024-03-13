@@ -4,6 +4,7 @@
   #nixConfig.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -16,8 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixos-wsl.url = "github:nix-community/nixos-wsl/2311.5.3";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl/2311.5.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, ... }@inputs: {
@@ -30,10 +33,12 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            home-manager.users.nixos = import ./home.nix;
+              users.nixos = import ./home.nix;
+            };
             # home-manager.extraSpecialArgs = inputs;
           }
         ];

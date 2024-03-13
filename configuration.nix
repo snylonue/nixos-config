@@ -13,8 +13,10 @@
     nixos-wsl.nixosModules.wsl
   ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl = {
+    enable = true;
+    defaultUser = "nixos";
+  };
 
   environment.systemPackages = with pkgs; [
     git

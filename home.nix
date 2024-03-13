@@ -1,19 +1,24 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
+  home = {
+    username = "nixos";
+    homeDirectory = "/home/nixos";
 
-  home.packages = with pkgs; [
-    ripgrep
-    bear
-    gnumake
-    gcc
-    meson
-    ninja
-    gdb
-    tokei
-  ];
+    packages = with pkgs; [
+      ripgrep
+      bear
+      gnumake
+      gcc
+      meson
+      ninja
+      gdb
+      tokei
+    ];
+
+    stateVersion = "23.11";
+
+  };
 
   programs = {
     ripgrep.enable = true;
@@ -30,10 +35,6 @@
         };
       };
     };
+    home-manager.enable = true;
   };
-
-  home.stateVersion = "23.11";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
