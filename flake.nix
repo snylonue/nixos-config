@@ -68,6 +68,12 @@
 
           modules = [ ./minami.nix ];
         };
+
+        "test11" = home-manager.lib.homeConfigurations {
+          inherit pkgs;
+
+          modules = [ ./test11.nix ];
+        };
       };
 
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
