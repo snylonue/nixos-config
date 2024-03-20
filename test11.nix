@@ -8,6 +8,7 @@
     packages = with pkgs; [
       home-manager
       helix
+      fastfetch
     ];
 
     stateVersion = "23.11";
