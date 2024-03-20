@@ -10,10 +10,13 @@
     homeDirectory = "/home/minami";
 
     packages = with pkgs; [
-      sing-box
+      # sing-box
       xray
+      tuic
     ];
   };
+
+  services.tuic.enable = true;
 
   targets.genericLinux.enable = true;
 }

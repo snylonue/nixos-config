@@ -17,6 +17,7 @@
     git
     helix
     fish
+    fastfetch
   ];
 
   programs = {
