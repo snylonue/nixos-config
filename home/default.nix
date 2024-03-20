@@ -18,6 +18,7 @@
     helix
     fish
     fastfetch
+    nil
   ];
 
   programs = {
