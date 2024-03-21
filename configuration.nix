@@ -31,6 +31,7 @@
     wineWowPackages.full
     winetricks
     fastfetch
+    nil
   ];
 
   nix.settings = {
