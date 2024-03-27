@@ -28,16 +28,49 @@
     man-pages-posix
     moreutils
     zip
+    wineWowPackages.full
+    winetricks
+    fastfetch
+    nil
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "nixos" ];
+  };
   # nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
 
   programs = {
     fish.enable = true;
   };
 
-  users.defaultUserShell = pkgs.fish;
+  fonts = {
+    packages = with pkgs; [
+      source-sans
+      source-serif
+      source-han-sans
+      source-han-serif
+    ];
+  };
+
+  sound.enable = true;
+  hardware = {
+    pulseaudio.enable = true;
+    pulseaudio = {
+      support32Bit = true;
+      extraConfig = "load-module module-combine-sink";
+    };
+  };
+
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "ja_JP.EUC-JP/EUC-JP"
+  ];
+
+  users = {
+    defaultUserShell = pkgs.fish;
+    extraUsers.nixos.extraGroups = [ "audio" ];
+  };
 
   networking.proxy.default = "http://172.18.96.1:10811";
 
