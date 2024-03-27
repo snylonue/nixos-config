@@ -69,7 +69,7 @@
           modules = [ ./minami.nix ];
         };
 
-        "test11" = home-manager.lib.homeConfigurations {
+        "test11" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
           modules = [ ./test11.nix ];

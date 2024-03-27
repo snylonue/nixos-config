@@ -6,9 +6,9 @@
     homeDirectory = "/fsa/home/test11";
 
     packages = with pkgs; [
-      home-manager
       helix
       fastfetch
+      ripgrep
     ];
 
     stateVersion = "23.11";
