@@ -74,6 +74,12 @@
 
           modules = [ ./test11.nix ];
         };
+
+        "marushiru" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [ ./marushiru.nix ];
+        };
       };
 
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
