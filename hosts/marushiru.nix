@@ -2,7 +2,7 @@
 
 let inputs = specialArgs; in
 {
-  imports = [ ./home ];
+  imports = [ ./../home ];
 
   home = {
     username = "marushiru";

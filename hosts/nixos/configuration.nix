@@ -32,17 +32,25 @@
     winetricks
     fastfetch
     nil
+    direnv
+    bottles
   ];
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ "nixos" ];
+    auto-optimise-store = true;
   };
   # nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
 
   programs = {
     fish.enable = true;
+    direnv.enable = true;
+    dconf.enable = true;
+    nix-ld.enable = true;
   };
+
+  services.xserver.enable = true;
 
   fonts = {
     packages = with pkgs; [

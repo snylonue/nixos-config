@@ -18,7 +18,7 @@
     };
 
     nixos-wsl = {
-      url = "github:nix-community/nixos-wsl/2311.5.3";
+      url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -40,16 +40,15 @@
 
           specialArgs = inputs;
           modules = [
-            ./configuration.nix
+            ./hosts/nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
 
-                users.nixos = import ./home.nix;
+                users.nixos = import ./hosts/nixos/home.nix;
               };
-              # home-manager.extraSpecialArgs = inputs;
             }
           ];
         };
@@ -67,20 +66,24 @@
         };
       in
       {
-        "shinobu" = mkHomeModule [ ./shinobu.nix ];
+        "shinobu" = mkHomeModule [ ./hosts/shinobu.nix ];
 
-        "minami" = mkHomeModule [ ./minami.nix ];
+        "minami" = mkHomeModule [ ./hosts/minami.nix ];
 
-        "test11" = mkHomeModule [ ./test11.nix ];
+        "test11" = mkHomeModule [ ./hosts/test11.nix ];
 
-        "marushiru" = mkHomeModule [ ./marushiru.nix ];
+        "marushiru" = mkHomeModule [ ./hosts/marushiru.nix ];
       };
 
-    systemConfigs.default = inputs.system-manager.lib.makeSystemConfig {
-      modules = [
-        ./module.nix
-      ];
-    };
+    systemConfigs =
+      let makeSystemConfig = inputs.system-manager.lib.makeSystemConfig;
+      in {
+        "marushiru" = makeSystemConfig {
+          modules = [
+            ./system/marushiru.nix
+          ];
+        };
+      };
 
     formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
   };
