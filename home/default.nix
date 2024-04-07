@@ -13,13 +13,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    git
-    helix
-    fish
-    fastfetch
-    nil
-  ];
+  home.packages = with pkgs; [ git helix fish fastfetch nil nixfmt ];
 
   programs = {
     fish.enable = true;
@@ -28,11 +22,7 @@
       enable = true;
       userName = "snylonue";
       userEmail = "snylonue@gmail.com";
-      extraConfig = {
-        init = {
-          defaultBranch = "master";
-        };
-      };
+      extraConfig = { init = { defaultBranch = "master"; }; };
     };
   };
 

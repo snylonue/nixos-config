@@ -5,16 +5,7 @@
     username = "nixos";
     homeDirectory = "/home/nixos";
 
-    packages = with pkgs; [
-      ripgrep
-      bear
-      gnumake
-      gcc
-      meson
-      ninja
-      gdb
-      tokei
-    ];
+    packages = with pkgs; [ ripgrep bear gnumake gcc meson ninja gdb tokei ];
 
     stateVersion = "23.11";
 
@@ -27,12 +18,8 @@
       userName = "snylonue";
       userEmail = "snylonue@gmail.com";
       extraConfig = {
-        init = {
-          defaultBranch = "master";
-        };
-        core = {
-          editor = "vim";
-        };
+        init = { defaultBranch = "master"; };
+        core = { editor = "vim"; };
       };
     };
     home-manager.enable = true;

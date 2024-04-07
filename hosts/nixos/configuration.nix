@@ -34,6 +34,7 @@
     nil
     direnv
     bottles
+    nixfmt
   ];
 
   nix.settings = {
@@ -70,10 +71,7 @@
     };
   };
 
-  i18n.supportedLocales = [
-    "en_US.UTF-8/UTF-8"
-    "ja_JP.EUC-JP/EUC-JP"
-  ];
+  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "ja_JP.EUC-JP/EUC-JP" ];
 
   users = {
     defaultUserShell = pkgs.fish;

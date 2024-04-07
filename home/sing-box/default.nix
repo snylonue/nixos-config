@@ -2,12 +2,12 @@
 let
   cfg = config.services.sing-box;
   settingsFormat = pkgs.formats.json { };
-in
-{
+in {
 
   options = {
     services.sing-box = {
-      enable = lib.mkEnableOption (lib.mdDoc "sing-box universal proxy platform");
+      enable =
+        lib.mkEnableOption (lib.mdDoc "sing-box universal proxy platform");
 
       package = lib.mkPackageOption pkgs "sing-box" { };
 
@@ -19,7 +19,8 @@ in
               geoip.path = lib.mkOption {
                 type = lib.types.path;
                 default = "${pkgs.sing-geoip}/share/sing-box/geoip.db";
-                defaultText = lib.literalExpression "\${pkgs.sing-geoip}/share/sing-box/geoip.db";
+                defaultText = lib.literalExpression
+                  "\${pkgs.sing-geoip}/share/sing-box/geoip.db";
                 description = lib.mdDoc ''
                   The path to the sing-geoip database.
                 '';
@@ -27,7 +28,8 @@ in
               geosite.path = lib.mkOption {
                 type = lib.types.path;
                 default = "${pkgs.sing-geosite}/share/sing-box/geosite.db";
-                defaultText = lib.literalExpression "\${pkgs.sing-geosite}/share/sing-box/geosite.db";
+                defaultText = lib.literalExpression
+                  "\${pkgs.sing-geosite}/share/sing-box/geosite.db";
                 description = lib.mdDoc ''
                   The path to the sing-geosite database.
                 '';
@@ -59,7 +61,8 @@ in
       Service = {
         RestartSec = "10s";
         Restart = "on-failure";
-        ExecStart = "${pkgs.sing-box}/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run";
+        ExecStart =
+          "${pkgs.sing-box}/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run";
         ExecReload = "/bin/kill -HUP $MAINPID";
       };
     };

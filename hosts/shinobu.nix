@@ -1,7 +1,7 @@
 { config, pkgs, specialArgs, ... }:
 
-let inputs = specialArgs; in
-{
+let inputs = specialArgs;
+in {
   imports = [ ./../home ];
 
   # Home Manager needs a bit of information about you and the paths it should

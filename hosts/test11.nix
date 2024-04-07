@@ -7,8 +7,6 @@
     username = "test11";
     homeDirectory = "/fsa/home/test11";
 
-    packages = with pkgs; [
-      ripgrep
-    ];
+    packages = with pkgs; [ ripgrep ];
   };
 }
