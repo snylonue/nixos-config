@@ -1,5 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
+let inputs = specialArgs; in
 {
   imports = [ ./../home ];
 
@@ -10,9 +11,10 @@
     homeDirectory = "/home/minami";
 
     packages = with pkgs; [
-      # sing-box
-      xray
+      sing-box
+      # xray
       tuic
+      inputs.system-manager.packages.x86_64-linux.system-manager
     ];
   };
 
