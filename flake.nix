@@ -60,12 +60,12 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs modules;
 
-          extraSpecialArgs = inputs;
+          extraSpecialArgs = { inherit inputs; };
         };
     in {
-      "shinobu" = mkHomeModule [ ./hosts/shinobu.nix ];
+      "shinobu" = mkHomeModule [ ./hosts/shinobu.nix ./modules/home/tuic.nix ];
 
-      "minami" = mkHomeModule [ ./hosts/minami.nix ];
+      "minami" = mkHomeModule [ ./hosts/minami.nix ./modules/home/tuic.nix ];
 
       "test11" = mkHomeModule [ ./hosts/test11.nix ];
 

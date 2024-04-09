@@ -1,6 +1,6 @@
 { config, pkgs, specialArgs, ... }:
 
-let inputs = specialArgs;
+let inherit (specialArgs) inputs;
 in {
   imports = [ ./../home ];
 
