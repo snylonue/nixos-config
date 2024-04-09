@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.services.tuic;
-  settingsFormat = pkgs.formats.json { };
+let cfg = config.services.tuic;
 in {
 
   options = {
@@ -11,12 +9,9 @@ in {
 
       package = lib.mkPackageOption pkgs "tuic" { };
 
-      settings = lib.mkOption {
-        type = lib.types.submodule {
-          freeformType = settingsFormat.type;
-          options = { };
-        };
-        default = { };
+      settingsFile = lib.mkOption {
+        type = lib.types.path;
+        default = "/usr/local/etc/tuic/config.json";
       };
     };
   };
@@ -36,8 +31,7 @@ in {
         # User = "root";
         RestartSec = "10s";
         Restart = "on-failure";
-        ExecStart =
-          "${pkgs.tuic}/bin/tuic-server -c /usr/local/etc/tuic/config.json";
+        ExecStart = "${pkgs.tuic}/bin/tuic-server -c ${cfg.settingsFile}";
         ExecReload = "/bin/kill -HUP $MAINPID";
       };
     };
