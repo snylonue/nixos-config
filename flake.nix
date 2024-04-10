@@ -26,6 +26,11 @@
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = { self, ... }@inputs: {
@@ -65,7 +70,11 @@
     in {
       "shinobu" = mkHomeModule [ ./hosts/shinobu.nix ./modules/home/tuic.nix ];
 
-      "minami" = mkHomeModule [ ./hosts/minami.nix ./modules/home/tuic.nix ];
+      "minami" = mkHomeModule [
+        ./hosts/minami.nix
+        ./modules/home/tuic.nix
+        ((import ./modules/home/sops.nix) "minami")
+      ];
 
       "test11" = mkHomeModule [ ./hosts/test11.nix ];
 
@@ -77,6 +86,10 @@
       in {
         "marushiru" =
           makeSystemConfig { modules = [ ./system/marushiru.nix ]; };
+        "minami" = makeSystemConfig {
+          modules = [ ./system/minami inputs.sops-nix.nixosModules.sops ];
+          extraSpecialArgs = { inherit inputs; };
+        };
       };
 
     formatter.x86_64-linux =
