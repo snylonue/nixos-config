@@ -1,4 +1,4 @@
-{ config, lib, pkgs, specialArgs, ... }:
+{ pkgs, specialArgs, ... }:
 
 let
   nixos = specialArgs.nixosModulesPath;
