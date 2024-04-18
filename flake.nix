@@ -27,9 +27,9 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    secrets = {
+      url = "git+ssh://git@github.com/snylonue/nix-secrets";
+      flake = false;
     };
   };
 
@@ -87,8 +87,8 @@
         "marushiru" =
           makeSystemConfig { modules = [ ./system/marushiru.nix ]; };
         "minami" = makeSystemConfig {
-          modules = [ ./system/minami inputs.sops-nix.nixosModules.sops ];
-          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./system/minami ];
+          extraSpecialArgs = { secrets = (import "${inputs.secrets}/xray.nix") {}; };
         };
       };
 
