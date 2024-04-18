@@ -1,8 +1,9 @@
-{ config, pkgs, specialArgs, ... }:
+{ pkgs, specialArgs, ... }:
 
-let inherit (specialArgs) inputs;
+let
+  inherit (specialArgs) inputs;
 in {
-  imports = [ ./../home ];
+  imports = [ ./../home ./../modules/home/tuic.nix ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

@@ -50,7 +50,7 @@ in {
                 "firstgen.universityofcalifornia.edu"
                 "climate.universityofcalifornia.edu"
               ];
-             inherit (secrets) shortIds privateKey;
+              inherit (secrets) shortIds privateKey;
             };
           };
           sniffing = {

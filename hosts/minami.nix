@@ -1,4 +1,4 @@
-{ config, pkgs, specialArgs, ... }:
+{ pkgs, specialArgs, ... }:
 
 let inherit (specialArgs) inputs;
 in {

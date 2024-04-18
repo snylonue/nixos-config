@@ -88,7 +88,9 @@
           makeSystemConfig { modules = [ ./system/marushiru.nix ]; };
         "minami" = makeSystemConfig {
           modules = [ ./system/minami ];
-          extraSpecialArgs = { secrets = (import "${inputs.secrets}/xray.nix") {}; };
+          extraSpecialArgs = {
+            secrets = (import "${inputs.secrets}/xray.nix") { };
+          };
         };
       };
 
