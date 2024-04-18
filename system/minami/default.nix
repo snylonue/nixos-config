@@ -59,7 +59,7 @@ in {
           };
         }];
 
-        outbounds = let mkOutbound = protocal: tag: { inherit protocal tag; };
+        outbounds = let mkOutbound = protocol: tag: { inherit protocol tag; };
         in [ (mkOutbound "freedom" "direct") (mkOutbound "blackhole" "block") ];
 
         policy = {
