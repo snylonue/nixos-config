@@ -27,8 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    secrets = {
-      url = "git+ssh://git@github.com/snylonue/nix-secrets";
+    priv = {
+      url = "path:./priv";
       flake = false;
     };
   };
@@ -89,7 +89,7 @@
         "minami" = makeSystemConfig {
           modules = [ ./system/minami ];
           extraSpecialArgs = {
-            secrets = (import "${inputs.secrets}/xray.nix") { };
+            priv = (import inputs.priv);
           };
         };
       };
