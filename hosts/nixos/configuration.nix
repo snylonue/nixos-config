@@ -60,7 +60,7 @@
     nix-ld.enable = true;
   };
 
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   fonts = {
     packages = with pkgs; [
