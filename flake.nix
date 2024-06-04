@@ -3,16 +3,9 @@
 
   #nixConfig.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
@@ -24,7 +17,7 @@
 
     system-manager = {
       url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     priv = {
@@ -59,8 +52,8 @@
 
     homeConfigurations = let
       system = "x86_64-linux";
-      pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-      home-manager = inputs.home-manager-unstable;
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      home-manager = inputs.home-manager;
       mkHomeModule = modules:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs modules;
