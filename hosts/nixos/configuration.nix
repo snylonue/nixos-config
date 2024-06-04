@@ -31,10 +31,12 @@
     wineWowPackages.full
     winetricks
     fastfetch
-    nil
+    nixd
     direnv
     bottles
     nixfmt
+    nix-ld
+    bind
   ];
 
   nix = {
