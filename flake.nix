@@ -81,9 +81,7 @@
           makeSystemConfig { modules = [ ./system/marushiru.nix ]; };
         "minami" = makeSystemConfig {
           modules = [ ./system/minami ];
-          extraSpecialArgs = {
-            priv = (import inputs.priv);
-          };
+          extraSpecialArgs = { priv = (import inputs.priv); };
         };
       };
 

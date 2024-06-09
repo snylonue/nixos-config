@@ -1,7 +1,6 @@
 { pkgs, specialArgs, ... }:
 
-let
-  inherit (specialArgs) inputs;
+let inherit (specialArgs) inputs;
 in {
   imports = [ ./../home ./../modules/home/tuic.nix ];
 
