@@ -20,8 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    priv = {
-      url = "path:./priv";
+    secrets = {
+      url = "git+ssh://git@github.com/snylonue/nix-secrets";
       flake = false;
     };
   };
@@ -81,7 +81,9 @@
           makeSystemConfig { modules = [ ./system/marushiru.nix ]; };
         "minami" = makeSystemConfig {
           modules = [ ./system/minami ];
-          extraSpecialArgs = { priv = (import inputs.priv); };
+          extraSpecialArgs = {
+            secrets = (import "${inputs.secrets}/xray.nix") { };
+          };
         };
       };
 
