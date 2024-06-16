@@ -2,7 +2,7 @@
 
 let
   nixos = specialArgs.nixosModulesPath;
-  inherit (specialArgs) priv;
+  inherit (specialArgs) secrets;
 in {
   imports = [ "${nixos}/services/networking/xray.nix" ];
 
@@ -31,7 +31,7 @@ in {
           protocol = "vless";
           settings = {
             clients = [{
-              id = priv.cliend_id;
+              id = secrets.cliend_id;
               flow = "xtls-rprx-vision";
             }];
             decryption = "none";
@@ -50,7 +50,7 @@ in {
                 "firstgen.universityofcalifornia.edu"
                 "climate.universityofcalifornia.edu"
               ];
-              inherit (priv) shortIds privateKey;
+              inherit (secrets) shortIds privateKey;
             };
           };
           sniffing = {

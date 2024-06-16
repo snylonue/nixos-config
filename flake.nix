@@ -20,13 +20,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    priv = {
-      url = "path:./priv";
+    secrets = {
+      url = "git+ssh://git@github.com/snylonue/nix-secrets";
       flake = false;
     };
   };
 
-  outputs = { self, ... }@inputs: {
+  outputs = inputs: {
     nixosConfigurations = let
       nixpkgs = inputs.nixpkgs;
       home-manager = inputs.home-manager;
@@ -80,8 +80,8 @@
         "marushiru" =
           makeSystemConfig { modules = [ ./system/marushiru.nix ]; };
         "minami" = makeSystemConfig {
-          modules = [ ./system/minami ];
-          extraSpecialArgs = { priv = (import inputs.priv); };
+          modules = [ ./system/minami  ];
+          extraSpecialArgs = { inherit (inputs) secrets; };
         };
       };
 
