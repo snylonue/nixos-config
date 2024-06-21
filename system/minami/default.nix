@@ -4,12 +4,13 @@ let
   nixos = specialArgs.nixosModulesPath;
   inherit (specialArgs) secrets;
 in {
-  imports = [ "${nixos}/services/networking/xray.nix" ];
+  imports =
+    [ "${nixos}/services/networking/xray.nix" ./../../modules/nixos/tuic.nix ];
 
   config = {
     nixpkgs.hostPlatform = "x86_64-linux";
 
-    environment = { systemPackages = with pkgs; [ xray ]; };
+    environment = { systemPackages = with pkgs; [ xray tuic ]; };
 
     services.xray = {
       enable = true;
@@ -71,6 +72,11 @@ in {
           };
         };
       };
+    };
+
+    services.tuic-server = {
+      enable = true;
+      settingsFile = "/usr/local/etc/tuic/config.json";
     };
   };
 }
