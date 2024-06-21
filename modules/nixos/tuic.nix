@@ -48,12 +48,14 @@
 
     systemd.services.tuic-server = {
       description = "tuic server Daemon";
-      after = [ "network.target" ];
+      after = [ "network.target" "nss-lookup.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        DynamicUser = true;
+        # DynamicUser = true;
+        ProtectSystem = true;
+        ProtectHome = "read-only";
         ExecStart = "${cfg.package}/bin/tuic-server --config ${settingsFile}";
-        CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE";
+        # CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE";
         AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE";
         NoNewPrivileges = true;
       };
