@@ -270,11 +270,25 @@
         "type": "github"
       }
     },
+    "priv": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-Bdjn0Y2dC8lNvezZRmm/eBHgycLiu90Zq5Z1MR8sgqY=",
+        "path": "./priv",
+        "type": "path"
+      },
+      "original": {
+        "path": "./priv",
+        "type": "path"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
+        "priv": "priv",
         "secrets": "secrets",
         "system-manager": "system-manager"
       }

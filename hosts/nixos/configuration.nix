@@ -37,6 +37,7 @@
     nixfmt
     nix-ld
     bind
+    cachix
   ];
 
   nix = {

@@ -24,9 +24,14 @@
       url = "git+ssh://git@github.com/snylonue/nix-secrets";
       flake = false;
     };
+
+    priv = {
+      url = "path:./priv";
+      flake = false;
+    };
   };
 
-  outputs = { self, ... }@inputs: {
+  outputs = { ... }@inputs: {
     nixosConfigurations = let
       nixpkgs = inputs.nixpkgs;
       home-manager = inputs.home-manager;
@@ -82,7 +87,7 @@
         "minami" = makeSystemConfig {
           modules = [ ./system/minami ];
           extraSpecialArgs = {
-            secrets = (import "${inputs.secrets}/xray.nix") { };
+            secrets = (import "${inputs.priv}/xray.nix") { };
           };
         };
       };
