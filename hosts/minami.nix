@@ -10,8 +10,8 @@ in {
     username = "minami";
     homeDirectory = "/home/minami";
 
-    packages = let system-manager = inputs.system-manager.packages.default;
-    in [ system-manager ] // (with pkgs; [
+    packages = let system-manager = inputs.system-manager.packages.x86_64-linux.system-manager;
+    in [ system-manager ] ++ (with pkgs; [
       sing-box
       # xray
       tuic

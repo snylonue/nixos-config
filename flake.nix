@@ -16,7 +16,7 @@
     };
 
     system-manager = {
-      url = "github:numtide/system-manager";
+      url = "github:snylonue/system-manager/pass-args";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -71,8 +71,7 @@
       "minami" = mkHomeModule [
         ./hosts/minami.nix
         ./modules/home/tuic.nix
-        ((import ./modules/home/sops.nix) "minami")
-      ];
+     ];
 
       "test11" = mkHomeModule [ ./hosts/test11.nix ];
 
