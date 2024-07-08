@@ -289,7 +289,6 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "priv": "priv",
-        "secrets": "secrets",
         "system-manager": "system-manager"
       }
     },
@@ -312,22 +311,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
-      }
-    },
-    "secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1713440408,
-        "narHash": "sha256-9cnyF/oUdChG3tsMof/ii48ZBBZ3zyC3FUG6aBuvwvI=",
-        "ref": "refs/heads/master",
-        "rev": "af546d25fdcf5c47dee70d8f84d76c6bdff261b3",
-        "revCount": 2,
-        "type": "git",
-        "url": "ssh://git@github.com/snylonue/nix-secrets"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/snylonue/nix-secrets"
       }
     },
     "system-manager": {

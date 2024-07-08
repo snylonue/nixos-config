@@ -20,11 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    secrets = {
-      url = "git+ssh://git@github.com/snylonue/nix-secrets";
-      flake = false;
-    };
-
     priv = {
       url = "path:./priv";
       flake = false;
@@ -68,10 +63,7 @@
     in {
       "shinobu" = mkHomeModule [ ./hosts/shinobu.nix ./modules/home/tuic.nix ];
 
-      "minami" = mkHomeModule [
-        ./hosts/minami.nix
-        ./modules/home/tuic.nix
-     ];
+      "minami" = mkHomeModule [ ./hosts/minami.nix ./modules/home/tuic.nix ];
 
       "test11" = mkHomeModule [ ./hosts/test11.nix ];
 
