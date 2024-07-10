@@ -1,7 +1,6 @@
 {
   description = "snylonue's NixOS Flake";
 
-  #nixConfig.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -62,12 +61,10 @@
         };
     in {
       "shinobu" = mkHomeModule [ ./hosts/shinobu.nix ./modules/home/tuic.nix ];
-
       "minami" = mkHomeModule [ ./hosts/minami.nix ./modules/home/tuic.nix ];
-
       "test11" = mkHomeModule [ ./hosts/test11.nix ];
-
       "marushiru" = mkHomeModule [ ./hosts/marushiru.nix ];
+      "hina" = mkHomeModule [ ./hosts/hina.nix ];
     };
 
     systemConfigs =
