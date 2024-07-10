@@ -78,6 +78,7 @@
             secrets = (import "${inputs.priv}/xray.nix") { };
           };
         };
+        "hina" = makeSystemConfig { modules = [ ./system/hina.nix ]; };
       };
 
     formatter.x86_64-linux =
