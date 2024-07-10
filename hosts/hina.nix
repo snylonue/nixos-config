@@ -2,14 +2,14 @@
 
 let
   inherit (specialArgs) inputs;
-  system-manager = inputs.system-manager.packages.default;
+  system-manager = inputs.system-manager.packages.x86_64-linux.system-manager;
 in {
   home = {
     stateVersion = "24.05"; # Please read the comment before changing.
     packages = (with pkgs; [ git helix fish fastfetch nixd nixfmt ])
       ++ [ system-manager ];
 
-    userName = "shinobu";
+    username = "shinobu";
     homeDirectory = "/home/shinobu";
   };
 
