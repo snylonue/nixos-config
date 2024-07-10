@@ -4,12 +4,14 @@ let
   inherit (specialArgs) inputs;
   system-manager = inputs.system-manager.packages.default;
 in {
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home = {
+    stateVersion = "24.05"; # Please read the comment before changing.
+    packages = (with pkgs; [ git helix fish fastfetch nixd nixfmt ])
+      ++ [ system-manager ];
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = (with pkgs; [ git helix fish fastfetch nixd nixfmt ])
-    ++ [ system-manager ];
+    userName = "shinobu";
+    homeDirectory = "/home/shinobu";
+  };
 
   programs = {
     fish.enable = true;
