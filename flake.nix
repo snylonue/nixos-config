@@ -19,13 +19,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     priv = {
       url = "path:./priv";
       flake = false;
     };
   };
 
-  outputs = { ... }@inputs: {
+  outputs = { self, ... }@inputs: {
     nixosConfigurations = let
       nixpkgs = inputs.nixpkgs;
       home-manager = inputs.home-manager;
@@ -46,6 +51,14 @@
             };
           }
         ];
+      };
+
+      "bootstrap" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        specialArgs = inputs;
+
+        modules = [ inputs.disko.nixosModules.disko ./hosts/bootstrap/configuration.nix ];
       };
     };
 
@@ -83,5 +96,9 @@
 
     formatter.x86_64-linux =
       inputs.nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+
+    packages.x86_64-linux = {
+      image = self.nixosConfigurations.bootstrap.config.system.build.diskoImages;
+    };
   };
 }
