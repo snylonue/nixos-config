@@ -58,7 +58,10 @@
 
         specialArgs = inputs;
 
-        modules = [ inputs.disko.nixosModules.disko ./hosts/bootstrap/configuration.nix ];
+        modules = [
+          inputs.disko.nixosModules.disko
+          ./hosts/bootstrap/configuration.nix
+        ];
       };
     };
 
@@ -92,13 +95,18 @@
           };
         };
         "hina" = makeSystemConfig { modules = [ ./system/hina.nix ]; };
+        "shinobu" = makeSystemConfig {
+          modules = [ ./system/shinobu.nix ];
+          extraSpecialArgs = { secrets = (import "${inputs.priv}/xray.nix") {}; };
+        };
       };
 
     formatter.x86_64-linux =
       inputs.nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
     packages.x86_64-linux = {
-      image = self.nixosConfigurations.bootstrap.config.system.build.diskoImages;
+      image =
+        self.nixosConfigurations.bootstrap.config.system.build.diskoImages;
     };
   };
 }

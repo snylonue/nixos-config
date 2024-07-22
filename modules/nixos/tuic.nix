@@ -51,9 +51,9 @@
       after = [ "network.target" "nss-lookup.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        DynamicUser = true;
+        # DynamicUser = true;
         ExecStart = "${cfg.package}/bin/tuic-server --config ${settingsFile}";
-        CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE";
+        # CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE";
         AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE";
         NoNewPrivileges = true;
       };

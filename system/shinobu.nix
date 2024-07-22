@@ -5,10 +5,12 @@ let
   inherit (specialArgs) secrets;
 in {
   imports =
-    [ "${nixos}/services/networking/xray.nix" ./../../modules/nixos/tuic.nix ];
+    [ "${nixos}/services/networking/xray.nix" ./../modules/nixos/tuic.nix ];
 
   config = {
     nixpkgs.hostPlatform = "x86_64-linux";
+
+    system-manager.allowAnyDistro = true;
 
     environment = { systemPackages = with pkgs; [ xray tuic ]; };
 

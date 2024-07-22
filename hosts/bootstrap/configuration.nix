@@ -12,10 +12,7 @@
   };
   services.openssh.enable = true;
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
-  ];
+  environment.systemPackages = map lib.lowPrio [ pkgs.curl pkgs.gitMinimal ];
 
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
