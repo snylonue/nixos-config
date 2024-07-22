@@ -97,7 +97,9 @@
         "hina" = makeSystemConfig { modules = [ ./system/hina.nix ]; };
         "shinobu" = makeSystemConfig {
           modules = [ ./system/shinobu.nix ];
-          extraSpecialArgs = { secrets = (import "${inputs.priv}/xray.nix") {}; };
+          extraSpecialArgs = {
+            secrets.sing-box = (import "${inputs.priv}/sing-box.nix");
+          };
         };
       };
 
