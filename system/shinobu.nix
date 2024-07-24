@@ -1,8 +1,14 @@
 { pkgs, specialArgs, ... }:
 
-let inherit (specialArgs) secrets;
+let
+  nixos = specialArgs.nixosModulesPath;
+  inherit (specialArgs) secrets;
 in {
-  imports = [ ./../modules/nixos/tuic.nix secrets.sing-box ];
+  imports = [
+    "${nixos}/services/networking/sing-box.nix"
+    ./../modules/nixos/tuic.nix
+    secrets.sing-box
+  ];
 
   config = {
     nixpkgs.hostPlatform = "x86_64-linux";

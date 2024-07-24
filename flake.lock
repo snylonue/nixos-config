@@ -293,14 +293,17 @@
     "priv": {
       "flake": false,
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-Bdjn0Y2dC8lNvezZRmm/eBHgycLiu90Zq5Z1MR8sgqY=",
-        "path": "./priv",
-        "type": "path"
+        "lastModified": 1721631501,
+        "narHash": "sha256-kzRM/Uky3U6QIyzAZJWiBqOMhkcMel+8yDEYiZdItno=",
+        "ref": "refs/heads/master",
+        "rev": "4878dcd9495062573d2107e97fea2696d9138d2c",
+        "revCount": 4,
+        "type": "git",
+        "url": "ssh://git@github.com/snylonue/nix-secrets"
       },
       "original": {
-        "path": "./priv",
-        "type": "path"
+        "type": "git",
+        "url": "ssh://git@github.com/snylonue/nix-secrets"
       }
     },
     "root": {

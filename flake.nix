@@ -25,7 +25,7 @@
     };
 
     priv = {
-      url = "path:./priv";
+      url = "git+ssh://git@github.com/snylonue/nix-secrets";
       flake = false;
     };
   };
