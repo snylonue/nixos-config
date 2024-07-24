@@ -98,7 +98,10 @@
         "shinobu" = makeSystemConfig {
           modules = [ ./system/shinobu.nix ];
           extraSpecialArgs = {
-            secrets.sing-box = (import "${inputs.priv}/sing-box.nix");
+            secrets = {
+              sing-box = (import "${inputs.priv}/sing-box.nix");
+              xray = (import "${inputs.priv}/xray.nix") { };
+            };
           };
         };
       };

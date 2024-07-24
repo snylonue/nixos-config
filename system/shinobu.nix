@@ -3,6 +3,7 @@
 let
   nixos = specialArgs.nixosModulesPath;
   inherit (specialArgs) secrets;
+  inherit (secrets) xray;
 in {
   imports = [
     "${nixos}/services/networking/sing-box.nix"
@@ -54,7 +55,7 @@ in {
             protocol = "vless";
             settings = {
               clients = [{
-                id = secrets.client_id;
+                id = xray.client_id;
                 flow = "xtls-rprx-vision";
               }];
               decryption = "none";
@@ -73,7 +74,7 @@ in {
                   "firstgen.universityofcalifornia.edu"
                   "climate.universityofcalifornia.edu"
                 ];
-                inherit (secrets) shortIds privateKey;
+                inherit (xray) shortIds privateKey;
               };
             };
             sniffing = {
