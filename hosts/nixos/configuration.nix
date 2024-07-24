@@ -16,6 +16,7 @@
   wsl = {
     enable = true;
     defaultUser = "nixos";
+    interop = { includePath = false; };
   };
 
   environment.systemPackages = with pkgs; [
