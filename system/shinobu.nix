@@ -7,6 +7,7 @@ let
 in {
   imports = [
     "${nixos}/services/networking/sing-box.nix"
+    "${nixos}/services/networking/xray.nix"
     ./../modules/nixos/tuic.nix
     secrets.sing-box
   ];
