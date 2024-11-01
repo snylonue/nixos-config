@@ -5,7 +5,7 @@
     username = "nixos";
     homeDirectory = "/home/nixos";
 
-    packages = with pkgs; [ ripgrep bear gnumake gcc meson ninja gdb tokei ];
+    packages = with pkgs; [ ripgrep tokei ];
 
     stateVersion = "23.11";
 

@@ -5,7 +5,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ pkgs, nixos-wsl, ... }:
+{ pkgs, nixos-wsl, config, ... }:
 
 {
   imports = [
@@ -17,6 +17,7 @@
     enable = true;
     defaultUser = "nixos";
     interop = { includePath = false; };
+    useWindowsDriver = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -39,6 +40,10 @@
     nix-ld
     bind
     cachix
+    weston
+    ast-grep
+    texlive.combined.scheme-full
+    config.boot.kernelPackages.perf
   ];
 
   nix = {
@@ -90,6 +95,8 @@
   };
 
   networking.proxy.default = "http://127.0.0.1:10881";
+
+  virtualisation.waydroid.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

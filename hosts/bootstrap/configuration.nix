@@ -2,6 +2,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
+    ./hardware-configuration.nix
     ./disk-config.nix
   ];
   boot.loader.grub = {
@@ -16,7 +17,7 @@
 
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIm0qs507HY6XdhU1m1zlLj49kqDpNEdf5V9rKb9lroo snylonue@gmail.com"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO9hqofNQMF58Q+lfhvXzhjGvIrDyPONxFKYw6H5s3HM"
   ];
 
   networking = {
