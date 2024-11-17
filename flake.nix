@@ -53,14 +53,14 @@
         ];
       };
 
-      "bootstrap" = nixpkgs.lib.nixosSystem {
+      "cuna" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         specialArgs = inputs;
 
         modules = [
           inputs.disko.nixosModules.disko
-          ./hosts/bootstrap/configuration.nix
+          ./hosts/cuna/configuration.nix
         ];
       };
     };

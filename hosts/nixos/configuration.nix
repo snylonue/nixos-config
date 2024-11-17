@@ -51,6 +51,10 @@
       experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "nixos" ];
       auto-optimise-store = true;
+      substituters = [
+        "https://mirror.nju.edu.cn/nix-channels/store"
+        "https://cache.nixos.org"
+      ];
     };
     gc = {
       automatic = true;
