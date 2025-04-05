@@ -58,10 +58,17 @@
 
         specialArgs = inputs;
 
-        modules = [
-          inputs.disko.nixosModules.disko
-          ./hosts/cuna/configuration.nix
-        ];
+        modules =
+          [ inputs.disko.nixosModules.disko ./hosts/cuna/configuration.nix ];
+      };
+
+      "atlas" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        specialArgs = inputs;
+
+        modules =
+          [ inputs.disko.nixosModules.disko ./hosts/atlas/configuration.nix ];
       };
     };
 
